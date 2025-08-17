@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Ajeet Verma — Portfolio</title>
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css"/>
+  <script defer src="/assets/js/main.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="logo" href="/index.html">Ajeet<span class="accent">.</span></a>
+      <button class="nav-toggle" aria-label="Toggle Navigation" aria-expanded="false">☰</button>
+      <nav class="site-nav" data-active="home">
+        <a href="/index.html" data-link="home">Home</a>
+        <a href="/about.html" data-link="about">About</a>
+        <a href="/projects.html" data-link="projects">Projects</a>
+        <a href="/blog.html" data-link="blog">Blog</a>
+        <a class="btn btn--sm" href="/contact.html" data-link="contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    
+<section class="hero">
+  <div class="hero__text">
+    <h1>Hi, I’m <span class="accent">Ajeet</span> — I build reliable AI systems.</h1>
+    <p class="lead">AI/ML Engineer & Python expert focused on GenAI, Computer Vision, and production automation.</p>
+    <div class="hero__cta">
+      <a class="btn btn--primary" href="/projects.html">View Projects</a>
+      <a class="btn btn--ghost" href="/contact.html">Contact</a>
+    </div>
+  </div>
+  <img class="hero__img" src="/assets/images/placeholder-hero.png" alt="Hero illustration"/>
+</section>
+
+<section>
+  <h2 class="section-title">Featured Projects</h2>
+  <div class="grid grid--cards">
+    <article class="card">
+      <img src="/assets/images/placeholder-project.png" alt="Project preview" class="card__img"/>
+      <h3>Smart Elastic Search</h3>
+      <p>Natural-language to Elasticsearch DSL with summarization. Built with FastAPI + LLM + ES.</p>
+      <div class="tags"><span>FastAPI</span><span>LLM</span><span>Elasticsearch</span></div>
+      <div class="card__links">
+        <a class="link" href="https://github.com/ajeet214/smart-elastic-search" target="_blank">GitHub</a>
+      </div>
+    </article>
+    <article class="card">
+      <img src="/assets/images/placeholder-project.png" alt="Project preview" class="card__img"/>
+      <h3>Web Scraping Toolkit</h3>
+      <p>Robust automation with Selenium + BeautifulSoup + pandas. Handles logins, iframes, proxies.</p>
+      <div class="tags"><span>Selenium</span><span>pandas</span><span>Automation</span></div>
+      <div class="card__links">
+        <a class="link" href="https://github.com/ajeet214/Web_Scraping_with_Selenium" target="_blank">GitHub</a>
+      </div>
+    </article>
+    <article class="card">
+      <img src="/assets/images/placeholder-project.png" alt="Project preview" class="card__img"/>
+      <h3>GenAI Smart Search</h3>
+      <p>Semantic retrieval + summarization over spreadsheets, with Streamlit UI.</p>
+      <div class="tags"><span>Streamlit</span><span>FAISS</span><span>OpenAI</span></div>
+      <div class="card__links">
+        <a class="link" href="https://github.com/ajeet214/smart_search" target="_blank">GitHub</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div><strong>Ajeet Verma</strong><br/><span class="muted">AI/ML Engineer • Python Expert</span></div>
+      <div class="footer-links">
+        <a href="https://github.com/ajeet214" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/ajeet214/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+      <div class="copy muted">© 2025 Ajeet Verma</div>
+    </div>
+  </footer>
+</body>
+</html>
