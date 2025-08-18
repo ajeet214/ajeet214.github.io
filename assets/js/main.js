@@ -1,7 +1,12 @@
-// ---- Mobile nav toggle ----
+// assets/js/main.js
+
+// -----------------------------
+// Mobile nav toggle + active link
+// -----------------------------
 document.addEventListener('DOMContentLoaded', () => {
   const btn = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.site-nav');
+
   if (btn && nav) {
     btn.addEventListener('click', () => {
       const isOpen = nav.classList.toggle('open');
@@ -9,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ---- Active link by path ----
+  // Highlight active link based on pathname
   const path = window.location.pathname.replace(/\/index\.html$/, '/');
   document.querySelectorAll('.site-nav [data-link]').forEach(a => {
     const key = a.getAttribute('data-link');
@@ -20,28 +25,34 @@ document.addEventListener('DOMContentLoaded', () => {
       blog: ['/blog.html'],
       contact: ['/contact.html']
     };
-    if (map[key] && map[key].includes(path)) a.classList.add('active');
+    if (map[key] && map[key].includes(path)) {
+      a.classList.add('active');
+    }
   });
 });
 
-// ---- Theme: init early based on saved or system preference ----
-(function initTheme(){
+// -----------------------------
+// Theme: initialize early
+// -----------------------------
+(function initTheme() {
   try {
-    const saved = localStorage.getItem('theme'); // 'light' | 'dark' | null
+    const saved = localStorage.getItem('theme');            // 'light' | 'dark' | null
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const theme = saved || (prefersDark ? 'dark' : 'light');
     document.documentElement.setAttribute('data-theme', theme);
-  } catch (e) {
+  } catch {
     document.documentElement.setAttribute('data-theme', 'light');
   }
 })();
 
-// ---- Theme: toggle + persist ----
+// -----------------------------
+// Theme: toggle + persist
+// -----------------------------
 document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.querySelector('[data-theme-toggle]');
   if (!toggle) return;
 
-  // reflect current state on load
+  // Reflect current state on load (aria-pressed for accessibility)
   const current = document.documentElement.getAttribute('data-theme') || 'light';
   toggle.setAttribute('aria-pressed', String(current === 'dark'));
 
