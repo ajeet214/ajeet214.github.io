@@ -24,14 +24,22 @@
 /* ===========================
    Global
    =========================== */
-html, body {
-  height: 100%;
-  margin: 0;
-  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  color: var(--text);
-  background: var(--bg);
-  transition: background 0.3s ease, color 0.3s ease;
+/* Page background with soft radial flares */
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+  color:var(--text);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, color-mix(in oklab, var(--bg) 65%, #111827 35%) 20%, transparent 60%),
+    radial-gradient(800px 400px at 110% -20%, color-mix(in oklab, var(--accent) 25%, transparent) 10%, transparent 60%),
+    var(--bg);
+  transition: background .3s ease, color .3s ease;
 }
+
+/* Layout containers */
+*{box-sizing:border-box}
+.container{width:min(1100px,92%); margin:0 auto;}
 
 a {
   color: var(--primary);
@@ -73,8 +81,8 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   z-index: 20;
   backdrop-filter: blur(8px);
-  background: var(--bg);
-  border-bottom: 1px solid rgba(148,163,184,.15);
+  background: color-mix(in oklab, var(--bg) 70%, transparent);
+  border-bottom:1px solid color-mix(in oklab, var(--muted) 22%, transparent);
   transition: background 0.3s ease;
 }
 
@@ -85,12 +93,14 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1rem;
 }
 
+.nav-wrap{display:flex; align-items:center; justify-content:space-between; padding:.9rem 0;}
 .logo {
   font-weight: 800;
   font-size: 1.25rem;
   color: var(--text);
   letter-spacing: .3px;
 }
+.logo .accent {color:var(--accent)}
 
 .site-nav {
   display: flex;
@@ -100,19 +110,24 @@ h1, h2, h3, h4, h5, h6 {
 
 .site-nav a {
   font-weight: 500;
-  color: var(--text);
+  color: color-mix(in oklab, var(--text) 88%, white);
   transition: color 0.2s;
+  padding:.45rem .7rem; border-radius:10px;
 }
 .site-nav a:hover {
   color: var(--accent);
+  background: color-mix(in oklab, var(--accent) 18%, transparent);
 }
 .site-nav a.active {
   color: var(--primary);
+  background: color-mix(in oklab, var(--accent) 18%, transparent);
 }
 
 /* mobile toggle */
-.nav-toggle {
-  display: none;
+.nav-toggle{
+  display:none; background:transparent;
+  border:1px solid color-mix(in oklab, var(--muted) 25%, transparent);
+  color:var(--text); padding:.4rem .6rem; border-radius:10px
 }
 @media (max-width: 768px) {
   .site-nav {
@@ -145,14 +160,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Mobile: stack links but keep the toggle aligned to the right edge */
 @media (max-width:800px){
+  .nav-toggle{display:block}
   .site-nav{
-    flex-direction:column;
-    align-items:stretch;   /* links full width */
+    display:none; position:absolute; right:4%; top:58px; flex-direction:column;
+    background: color-mix(in oklab, var(--bg) 90%, #0b1327 10%);
+    padding:.8rem; border:1px solid color-mix(in oklab, var(--muted) 22%, transparent); border-radius:12px
   }
-  .site-nav .theme-toggle{
-    margin-left:0;
-    align-self:flex-end;   /* toggle hugs the right edge */
-  }
+  .site-nav.open{display:flex}
+  .site-nav .theme-toggle{ margin-left:0; align-self:flex-end; }
 }
 
 /* ===========================
@@ -309,24 +324,42 @@ button:hover, .btn:hover {
 
 
 /* ===========================
-   Cards / Sections
+   Cards
    =========================== */
-.card {
-  background: var(--card);
-  border-radius: 1rem;
-  padding: 1.5rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  transition: background 0.3s ease;
+.card{
+  background: linear-gradient(180deg,
+    color-mix(in oklab, var(--card) 96%, transparent),
+    color-mix(in oklab, var(--card) 78%, transparent));
+  border:1px solid color-mix(in oklab, var(--muted) 22%, transparent);
+  border-radius:16px; padding:1rem;
+  box-shadow: 0 10px 30px color-mix(in oklab, black 28%, var(--bg) 72%);
+}
+.card__img{
+  border-radius:12px; border:1px solid color-mix(in oklab, var(--muted) 22%, transparent); margin-bottom:.8rem
 }
 
-.hero {
-  text-align: center;
-  padding: 5rem 1rem;
+/* Sections, grids */
+.section-title {font-size:1.3rem; margin:2rem 0 1rem}
+.grid {display:grid; gap:1rem}
+.grid--cards {grid-template-columns:repeat(3,1fr)}
+@media (max-width:1000px){.grid--cards{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.grid--cards{grid-template-columns:1fr}}
+
+/* Tags */
+.tags{display:flex; flex-wrap:wrap; gap:.4rem; margin:.6rem 0}
+.tags span{
+  background: color-mix(in oklab, var(--bg) 70%, var(--card) 30%);
+  border:1px solid color-mix(in oklab, var(--muted) 28%, transparent);
+  padding:.18rem .5rem; border-radius:999px;
+  color: color-mix(in oklab, var(--text) 82%, black);
+  font-size:.82rem
 }
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
+.tags--lg span{font-size:.9rem; padding:.28rem .7rem}
+
+/* Lists / timeline */
+.list{padding-left:1rem}
+.timeline{padding-left:1rem}
+.timeline li{margin:.3rem 0}
 
 /* ===========================
    Contact Form
@@ -358,13 +391,30 @@ button:hover, .btn:hover {
    Footer
    =========================== */
 .site-footer {
-  padding: 2rem 1rem;
-  text-align: center;
-  font-size: 0.9rem;
-  color: var(--muted);
-  border-top: 1px solid rgba(148,163,184,.15);
+	margin: 3rem 0 2rem;
+	border-top: 1px solid color-mix(in oklab, var(--muted) 22%, transparent);
+	padding-top: 1rem
 }
-
+.footer-grid {
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr;
+	gap: 1rem;
+	align-items: center
+}
+.footer-links {
+	display: flex;
+	gap: .8rem;
+	flex-wrap: wrap
+}
+.copy {
+	text-align: right
+}
+.muted {
+	color: var(--muted)
+}
+.contact-list {
+	line-height: 1.9
+}
 /* ===========================
    form
    =========================== */
@@ -377,5 +427,21 @@ button:hover, .btn:hover {
 .form-status.ok { color: #16a34a; }     /* green */
 .form-status.err { color: #ef4444; }    /* red */
 
-/* hero image*/
-.hero__img{border-radius:18px; border:1px solid rgba(148,163,184,.2); background:#0b1327; aspect-ratio:4/3; object-fit:cover}
+
+/* ===========================
+   Hero
+   ===========================
+*/
+.hero {
+  display:grid; grid-template-columns:1.4fr 1fr; gap:2rem; align-items:center; padding:4rem 0 2rem;
+}
+.hero__text h1{font-size:clamp(1.8rem,3.8vw,3rem); margin:.2rem 0 0}
+.lead{color: color-mix(in oklab, var(--text) 70%, #c7d2fe); font-size:1.05rem; line-height:1.6}
+.hero__cta{margin-top:1rem; display:flex; gap:.8rem}
+.hero__img{
+  border-radius:18px;
+  border:1px solid color-mix(in oklab, var(--muted) 24%, transparent);
+  background: color-mix(in oklab, var(--bg) 85%, #0b1327 15%);
+  aspect-ratio:4/3; object-fit:cover
+}
+@media (max-width:900px){ .hero{grid-template-columns:1fr} }
