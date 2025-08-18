@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // -----------------------------
 (function initTheme() {
   try {
-    const saved = localStorage.getItem('theme');            // 'light' | 'dark' | null
+    const saved = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const theme = saved || (prefersDark ? 'dark' : 'light');
     document.documentElement.setAttribute('data-theme', theme);
@@ -46,27 +46,27 @@ document.addEventListener('DOMContentLoaded', () => {
 // -----------------------------
 // Theme: switch control (+ keyboard)
 // -----------------------------
+// Theme: switch control (+ keyboard)
 document.addEventListener('DOMContentLoaded', () => {
   const switchInput = document.getElementById('themeSwitch');
   if (!switchInput) return;
 
-  // reflect current state on load
   const current = document.documentElement.getAttribute('data-theme') || 'light';
   switchInput.checked = (current === 'dark');
+  switchInput.setAttribute('aria-checked', String(switchInput.checked));
 
   function setTheme(next) {
     document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
-    switchInput.checked = (next === 'dark');
+    const isDark = (next === 'dark');
+    switchInput.checked = isDark;
+    switchInput.setAttribute('aria-checked', String(isDark));
   }
 
-  // click/tap
   switchInput.addEventListener('change', () => {
-    const next = switchInput.checked ? 'dark' : 'light';
-    setTheme(next);
+    setTheme(switchInput.checked ? 'dark' : 'light');
   });
 
-  // left/right arrow for accessibility
   switchInput.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight') { e.preventDefault(); setTheme('dark'); }
     if (e.key === 'ArrowLeft')  { e.preventDefault(); setTheme('light'); }

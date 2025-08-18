@@ -155,20 +155,79 @@ button:hover, .btn:hover {
   background: var(--accent);
 }
 
-/* Theme toggle button */
-[data-theme-toggle] {
-  background: none;
-  border: 1px solid var(--muted);
-  color: var(--text);
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.5rem;
+
+/* ===========================
+   Theme toggle switch with labels
+   =========================== */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
   cursor: pointer;
-  font-size: 0.9rem;
+  user-select: none;
+  margin-left: .25rem;
 }
-[data-theme-toggle][aria-pressed="true"] {
-  background: var(--primary);
-  color: #fff;
-  border-color: var(--primary);
+.theme-toggle input { position: absolute; opacity: 0; pointer-events: none; }
+
+.theme-toggle__track {
+  --track-bg: color-mix(in oklab, var(--muted) 15%, var(--bg));
+  position: relative;
+  width: 64px;
+  height: 32px;
+  border-radius: 999px;
+  background: var(--track-bg);
+  border: 1px solid color-mix(in oklab, var(--muted) 30%, transparent);
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 2px;
+}
+
+.theme-toggle__thumb {
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 28px; height: 28px;
+  border-radius: 999px;
+  background: var(--panel);
+  box-shadow: 0 2px 6px rgba(0,0,0,.25);
+  transition: transform .25s ease, background-color .25s ease, box-shadow .25s ease;
+  will-change: transform;
+}
+/* move thumb to the right when checked (dark) */
+.theme-toggle input:checked + .theme-toggle__track .theme-toggle__thumb {
+  transform: translateX(32px);
+}
+
+/* sun / moon hints inside track */
+.theme-toggle__icon {
+  position: absolute; top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9rem; opacity: .75;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+.theme-toggle__icon--sun { left: 10px; }
+.theme-toggle__icon--moon { right: 10px; opacity: .35; }
+.theme-toggle input:checked + .theme-toggle__track .theme-toggle__icon--sun { opacity: .35; }
+.theme-toggle input:checked + .theme-toggle__track .theme-toggle__icon--moon { opacity: .85; }
+
+/* Labels beside the switch */
+.theme-toggle__text { display:flex; align-items:center; gap:.25rem; font-size:.9rem; }
+.theme-toggle__sep { opacity:.4; }
+
+/* Emphasize “Light” when unchecked, “Dark” when checked */
+.theme-toggle__text-light,
+.theme-toggle__text-dark { transition: color .25s ease, opacity .25s ease; }
+
+.theme-toggle .theme-toggle__text-light { color: var(--text); font-weight: 600; }
+.theme-toggle .theme-toggle__text-dark  { color: var(--muted); }
+
+.theme-toggle input:checked ~ .theme-toggle__text .theme-toggle__text-light { color: var(--muted); font-weight: 500; }
+.theme-toggle input:checked ~ .theme-toggle__text .theme-toggle__text-dark  { color: var(--primary); font-weight: 700; }
+
+/* respects reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle__thumb, .theme-toggle__icon,
+  .theme-toggle__text-light, .theme-toggle__text-dark { transition: none; }
 }
 
 /* ===========================

@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/main.css?v=2"/>
-  <script defer src="/assets/js/main.js?v=2"></script>
+  <link rel="stylesheet" href="/assets/css/main.css?v=3"/>
+  <script defer src="/assets/js/main.js?v=3"></script>
 </head>
 <body>
   <header class="site-header">
@@ -25,11 +25,16 @@
         <a href="/blog.html" data-link="blog">Blog</a>
         <a class="btn btn--sm" href="/contact.html" data-link="contact">Contact</a>
         <label class="theme-toggle" title="Theme">
-          <input type="checkbox" id="themeSwitch" aria-label="Toggle dark mode">
-          <span class="theme-toggle__track">
-            <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☀</span>
-            <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">🌙</span>
-            <span class="theme-toggle__thumb" aria-hidden="true"></span>
+          <input type="checkbox" id="themeSwitch" role="switch" aria-label="Toggle dark mode" aria-checked="false">
+          <span class="theme-toggle__track" aria-hidden="true">
+            <span class="theme-toggle__icon theme-toggle__icon--sun">☀</span>
+            <span class="theme-toggle__icon theme-toggle__icon--moon">🌙</span>
+            <span class="theme-toggle__thumb"></span>
+          </span>
+          <span class="theme-toggle__text" aria-hidden="true">
+            <span class="theme-toggle__text-light">Light</span>
+            <span class="theme-toggle__sep">/</span>
+            <span class="theme-toggle__text-dark">Dark</span>
           </span>
         </label>
       </nav>
