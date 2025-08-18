@@ -30,6 +30,7 @@ body{
     radial-gradient(1200px 600px at 10% -10%, color-mix(in oklab, var(--surface) 65%, transparent) 20%, transparent 60%),
     radial-gradient(800px 400px at 110% -20%, color-mix(in oklab, var(--accent) 30%, transparent) 10%, transparent 60%),
     var(--bg);
+  transition: background-color .25s, color .25s;
 }
 .site-header{
   position:sticky; top:0; z-index:20;
