@@ -16,25 +16,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Highlight active link based on pathname
   const path = window.location.pathname.replace(/\/index\.html$/, '/');
+  const map = {
+    home: ['/', '/index.html'],
+    about: ['/about.html'],
+    projects: ['/projects.html'],
+    blog: ['/blog.html'],
+    contact: ['/contact.html'],
+  };
   document.querySelectorAll('.site-nav [data-link]').forEach(a => {
     const key = a.getAttribute('data-link');
-    const map = {
-      home: ['/', '/index.html'],
-      about: ['/about.html'],
-      projects: ['/projects.html'],
-      blog: ['/blog.html'],
-      contact: ['/contact.html']
-    };
     if (map[key] && map[key].includes(path)) a.classList.add('active');
   });
 });
+
 
 // -----------------------------
 // Theme: initialize early
 // -----------------------------
 (function initTheme() {
   try {
-    const saved = localStorage.getItem('theme');
+    const saved = localStorage.getItem('theme'); // 'light' | 'dark' | null
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const theme = saved || (prefersDark ? 'dark' : 'light');
     document.documentElement.setAttribute('data-theme', theme);
@@ -43,13 +44,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })();
 
+
 // -----------------------------
-// Theme toggle: ripple micro-interaction
+// Theme toggle: state + a11y + ripple
 // -----------------------------
 document.addEventListener('DOMContentLoaded', () => {
   const switchInput = document.getElementById('themeSwitch');
   if (!switchInput) return;
 
+  const status = document.getElementById('themeStatus'); // SR live region (optional)
+  const thumb = switchInput.nextElementSibling
+    ? switchInput.nextElementSibling.querySelector('.theme-toggle__thumb')
+    : null;
+
+  // Reflect current theme on load
   const current = document.documentElement.getAttribute('data-theme') || 'light';
   switchInput.checked = (current === 'dark');
   switchInput.setAttribute('aria-checked', String(switchInput.checked));
@@ -60,63 +68,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const isDark = (next === 'dark');
     switchInput.checked = isDark;
     switchInput.setAttribute('aria-checked', String(isDark));
-
-    // NEW: announce to screen readers
-    if (status) {
-      status.textContent = isDark ? 'Dark mode enabled' : 'Light mode enabled';
-    }
+    if (status) status.textContent = isDark ? 'Dark mode enabled' : 'Light mode enabled';
   }
 
+  // Toggle via click/tap
   switchInput.addEventListener('change', () => {
     setTheme(switchInput.checked ? 'dark' : 'light');
   });
 
+  // Keyboard arrows (enter/space already handled by checkbox)
   switchInput.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight') { e.preventDefault(); setTheme('dark'); }
     if (e.key === 'ArrowLeft')  { e.preventDefault(); setTheme('light'); }
   });
-});
 
-document.addEventListener('DOMContentLoaded', () => {
-  const switchInput = document.getElementById('themeSwitch');
-  if (!switchInput) return;
-
-  const thumb = switchInput.nextElementSibling
-    ? switchInput.nextElementSibling.querySelector('.theme-toggle__thumb')
-    : null;
-
-  if (!thumb) return;
-
+  // Ripple micro-interaction
   function triggerRipple() {
-    // restart animation
+    if (!thumb) return;
     thumb.classList.remove('ripple');
-    // force reflow
-    void thumb.offsetWidth;
+    void thumb.offsetWidth; // reflow to restart animation
     thumb.classList.add('ripple');
   }
-
-  // click/tap
   switchInput.addEventListener('click', triggerRipple);
-
-  // keyboard toggles (enter/space already fire click on checkbox)
   switchInput.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-      // our theme handler already flips the state; just add ripple for feedback
       requestAnimationFrame(triggerRipple);
     }
   });
 });
 
-document.querySelectorAll('.theme-toggle input').forEach(input => {
-  const thumb = input.nextElementSibling.querySelector('.theme-toggle__thumb');
-  input.addEventListener('click', () => {
-    thumb.classList.remove('ripple');
-    void thumb.offsetWidth; // reflow to restart animation
-    thumb.classList.add('ripple');
-  });
-});
 
-// ---- Contact form: inline submit handler (Formspree) ----
+// -----------------------------
+// Contact form: inline submit handler (Formspree)
+// -----------------------------
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contactForm');
   if (!form) return;
@@ -135,15 +119,10 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // basic client validation (optional but nice)
-    if (!form.checkValidity && !form.reportValidity) {
-      // older browsers: do nothing
-    } else if (form.reportValidity && !form.reportValidity()) {
-      return;
-    }
+    // basic client validation
+    if (form.reportValidity && !form.reportValidity()) return;
 
     try {
-      // UI state
       submitBtn?.setAttribute('disabled', 'true');
       setStatus('loading', 'Sending…');
 
@@ -151,30 +130,27 @@ document.addEventListener('DOMContentLoaded', () => {
       const res = await fetch(endpoint, {
         method: 'POST',
         body: formData,
-        headers: { 'Accept': 'application/json' }
+        headers: { 'Accept': 'application/json' },
       });
 
       if (res.ok) {
         form.reset();
         setStatus('ok', '✅ Thanks! Your message was sent successfully.');
       } else {
-        // Try to show server-provided errors
         let message = '❌ Sorry, something went wrong. Please try again.';
         try {
           const data = await res.json();
-          if (data && data.errors && data.errors.length) {
+          if (data?.errors?.length) {
             message = '❌ ' + data.errors.map(e => e.message).join(' ');
           }
-        } catch (_) { /* ignore JSON parse errors */ }
+        } catch {}
         setStatus('err', message);
       }
-    } catch (err) {
+    } catch {
       setStatus('err', '❌ Network error. Please check your connection and try again.');
     } finally {
       submitBtn?.removeAttribute('disabled');
-      // Clear the status after a while (optional)
       setTimeout(() => { if (status) status.textContent = ''; }, 6000);
     }
   });
 });
-
