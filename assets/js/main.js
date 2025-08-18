@@ -64,3 +64,65 @@ document.addEventListener('DOMContentLoaded', () => {
     toggle.setAttribute('aria-pressed', String(next === 'dark'));
   });
 });
+
+// ---- Contact form: inline submit handler (Formspree) ----
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+
+  const status = document.getElementById('contactStatus');
+  const submitBtn = document.getElementById('contactSubmit');
+  const endpoint = form.getAttribute('action');
+
+  const setStatus = (type, msg) => {
+    if (!status) return;
+    status.textContent = msg;
+    status.classList.remove('ok', 'err', 'loading');
+    status.classList.add(type);
+  };
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // basic client validation (optional but nice)
+    if (!form.checkValidity && !form.reportValidity) {
+      // older browsers: do nothing
+    } else if (form.reportValidity && !form.reportValidity()) {
+      return;
+    }
+
+    try {
+      // UI state
+      submitBtn?.setAttribute('disabled', 'true');
+      setStatus('loading', 'Sending…');
+
+      const formData = new FormData(form);
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        form.reset();
+        setStatus('ok', '✅ Thanks! Your message was sent successfully.');
+      } else {
+        // Try to show server-provided errors
+        let message = '❌ Sorry, something went wrong. Please try again.';
+        try {
+          const data = await res.json();
+          if (data && data.errors && data.errors.length) {
+            message = '❌ ' + data.errors.map(e => e.message).join(' ');
+          }
+        } catch (_) { /* ignore JSON parse errors */ }
+        setStatus('err', message);
+      }
+    } catch (err) {
+      setStatus('err', '❌ Network error. Please check your connection and try again.');
+    } finally {
+      submitBtn?.removeAttribute('disabled');
+      // Clear the status after a while (optional)
+      setTimeout(() => { if (status) status.textContent = ''; }, 6000);
+    }
+  });
+});
