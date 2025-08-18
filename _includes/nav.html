@@ -1,0 +1,28 @@
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="logo" href="{{ site.baseurl }}/index.html">Ajeet<span class="accent">.</span></a>
+    <button class="nav-toggle" aria-label="Toggle Navigation" aria-expanded="false">☰</button>
+    <nav class="site-nav" data-active="{{ page.active | default: '' }}">
+      <a href="{{ site.baseurl }}/index.html"    data-link="home">Home</a>
+      <a href="{{ site.baseurl }}/about.html"    data-link="about">About</a>
+      <a href="{{ site.baseurl }}/projects.html" data-link="projects">Projects</a>
+      <a href="{{ site.baseurl }}/blog.html"     data-link="blog">Blog</a>
+      <a class="btn btn--sm" href="{{ site.baseurl }}/contact.html" data-link="contact">Contact</a>
+
+      <!-- Unified theme toggle switch -->
+      <label class="theme-toggle" title="Theme">
+        <input type="checkbox" id="themeSwitch" role="switch" aria-label="Toggle dark mode" aria-checked="false">
+        <span class="theme-toggle__track" aria-hidden="true">
+          <span class="theme-toggle__icon theme-toggle__icon--sun">☀</span>
+          <span class="theme-toggle__icon theme-toggle__icon--moon">🌙</span>
+          <span class="theme-toggle__thumb"></span>
+        </span>
+        <span class="theme-toggle__text" aria-hidden="true">
+          <span class="theme-toggle__text-light">Light</span>
+          <span class="theme-toggle__sep">/</span>
+          <span class="theme-toggle__text-dark">Dark</span>
+        </span>
+      </label>
+    </nav>
+  </div>
+</header>
