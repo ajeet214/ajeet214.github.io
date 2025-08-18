@@ -44,37 +44,35 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 // -----------------------------
-// Theme: switch control (+ keyboard)
+// Theme toggle: ripple micro-interaction
 // -----------------------------
-// Theme: switch control (+ keyboard)
 document.addEventListener('DOMContentLoaded', () => {
   const switchInput = document.getElementById('themeSwitch');
   if (!switchInput) return;
 
-  const current = document.documentElement.getAttribute('data-theme') || 'light';
-  switchInput.checked = (current === 'dark');
-  switchInput.setAttribute('aria-checked', String(switchInput.checked));
+  const thumb = switchInput.nextElementSibling
+    ? switchInput.nextElementSibling.querySelector('.theme-toggle__thumb')
+    : null;
 
-  function setTheme(next) {
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-    const isDark = (next === 'dark');
-    switchInput.checked = isDark;
-    switchInput.setAttribute('aria-checked', String(isDark));
+  if (!thumb) return;
 
-    // NEW: announce to screen readers
-    if (status) {
-      status.textContent = isDark ? 'Dark mode enabled' : 'Light mode enabled';
-    }
+  function triggerRipple() {
+    // restart animation
+    thumb.classList.remove('ripple');
+    // force reflow
+    void thumb.offsetWidth;
+    thumb.classList.add('ripple');
   }
 
-  switchInput.addEventListener('change', () => {
-    setTheme(switchInput.checked ? 'dark' : 'light');
-  });
+  // click/tap
+  switchInput.addEventListener('click', triggerRipple);
 
+  // keyboard toggles (enter/space already fire click on checkbox)
   switchInput.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') { e.preventDefault(); setTheme('dark'); }
-    if (e.key === 'ArrowLeft')  { e.preventDefault(); setTheme('light'); }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+      // our theme handler already flips the state; just add ripple for feedback
+      requestAnimationFrame(triggerRipple);
+    }
   });
 });
 
