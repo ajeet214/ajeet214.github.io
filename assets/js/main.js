@@ -61,6 +61,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const isDark = (next === 'dark');
     switchInput.checked = isDark;
     switchInput.setAttribute('aria-checked', String(isDark));
+
+    // NEW: announce to screen readers
+    if (status) {
+      status.textContent = isDark ? 'Dark mode enabled' : 'Light mode enabled';
+    }
   }
 
   switchInput.addEventListener('change', () => {

@@ -247,6 +247,23 @@ button:hover, .btn:hover {
   .theme-toggle__text-light, .theme-toggle__text-dark { transition: none; }
 }
 
+/* Visually hidden, screen-reader only */
+.sr-only {
+  position:absolute !important;
+  width:1px; height:1px;
+  padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0);
+  white-space:nowrap; border:0;
+}
+
+/* Keyboard focus ring for the switch */
+.theme-toggle input:focus-visible + .theme-toggle__track {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--ring);
+  border-color: var(--primary);
+}
+
+
 /* ===========================
    Cards / Sections
    =========================== */
@@ -315,57 +332,3 @@ button:hover, .btn:hover {
 .form-status.loading { color: var(--muted); }
 .form-status.ok { color: #16a34a; }     /* green */
 .form-status.err { color: #ef4444; }    /* red */
-
-/* --- Theme toggle switch --- */
-.theme-toggle {
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
-  margin-left: .25rem;
-}
-.theme-toggle input { position: absolute; opacity: 0; pointer-events: none; }
-
-.theme-toggle__track {
-  --track-bg: color-mix(in oklab, var(--muted) 15%, var(--bg));
-  position: relative;
-  width: 64px;
-  height: 32px;
-  border-radius: 999px;
-  background: var(--track-bg);
-  border: 1px solid color-mix(in oklab, var(--muted) 30%, transparent);
-  display: inline-block;
-  box-sizing: border-box;
-  padding: 2px;
-}
-
-.theme-toggle__thumb {
-  position: absolute;
-  top: 2px; left: 2px;
-  width: 28px; height: 28px;
-  border-radius: 999px;
-  background: var(--panel);
-  box-shadow: 0 2px 6px rgba(0,0,0,.25);
-  transition: transform .25s ease, background-color .25s ease, box-shadow .25s ease;
-  will-change: transform;
-}
-
-/* move thumb to the right when checked (dark) */
-.theme-toggle input:checked + .theme-toggle__track .theme-toggle__thumb {
-  transform: translateX(32px);
-}
-
-/* little sun/moon hints */
-.theme-toggle__icon {
-  position: absolute; top: 50%;
-  transform: translateY(-50%);
-  font-size: 0.9rem; opacity: .75;
-  pointer-events: none;
-}
-.theme-toggle__icon--sun { left: 10px; }
-.theme-toggle__icon--moon { right: 10px; }
-
-/* respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .theme-toggle__thumb { transition: none; }
-}
