@@ -25,9 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
       blog: ['/blog.html'],
       contact: ['/contact.html']
     };
-    if (map[key] && map[key].includes(path)) {
-      a.classList.add('active');
-    }
+    if (map[key] && map[key].includes(path)) a.classList.add('active');
   });
 });
 
@@ -46,24 +44,35 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 // -----------------------------
-// Theme: toggle + persist
+// Theme: switch control (+ keyboard)
 // -----------------------------
 document.addEventListener('DOMContentLoaded', () => {
-  const toggle = document.querySelector('[data-theme-toggle]');
-  if (!toggle) return;
+  const switchInput = document.getElementById('themeSwitch');
+  if (!switchInput) return;
 
-  // Reflect current state on load (aria-pressed for accessibility)
+  // reflect current state on load
   const current = document.documentElement.getAttribute('data-theme') || 'light';
-  toggle.setAttribute('aria-pressed', String(current === 'dark'));
+  switchInput.checked = (current === 'dark');
 
-  toggle.addEventListener('click', () => {
-    const now = document.documentElement.getAttribute('data-theme') || 'light';
-    const next = now === 'light' ? 'dark' : 'light';
+  function setTheme(next) {
     document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
-    toggle.setAttribute('aria-pressed', String(next === 'dark'));
+    switchInput.checked = (next === 'dark');
+  }
+
+  // click/tap
+  switchInput.addEventListener('change', () => {
+    const next = switchInput.checked ? 'dark' : 'light';
+    setTheme(next);
+  });
+
+  // left/right arrow for accessibility
+  switchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); setTheme('dark'); }
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); setTheme('light'); }
   });
 });
+
 
 // ---- Contact form: inline submit handler (Formspree) ----
 document.addEventListener('DOMContentLoaded', () => {

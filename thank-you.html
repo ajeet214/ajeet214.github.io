@@ -23,7 +23,14 @@
         <a href="/projects.html" data-link="projects">Projects</a>
         <a href="/blog.html" data-link="blog">Blog</a>
         <a class="btn btn--sm" href="/contact.html" data-link="contact">Contact</a>
-        <button class="btn btn--sm" data-theme-toggle aria-pressed="false" title="Toggle dark mode">🌓</button>
+        <label class="theme-toggle" title="Theme">
+          <input type="checkbox" id="themeSwitch" aria-label="Toggle dark mode">
+          <span class="theme-toggle__track">
+            <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☀</span>
+            <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">🌙</span>
+            <span class="theme-toggle__thumb" aria-hidden="true"></span>
+          </span>
+        </label>
       </nav>
     </div>
   </header>
