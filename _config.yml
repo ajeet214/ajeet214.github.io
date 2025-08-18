@@ -1,5 +1,4 @@
 title: "Ajeet Verma"
 url: "https://ajeet214.github.io"
 baseurl: ""   # keep empty for user site; if you later use a project site, set "/project-name"
-version: 14    # bump to cache-bust CSS/JS when needed
-permalink: pretty
+version: 15    # bump to cache-bust CSS/JS when needed
