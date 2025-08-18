@@ -227,3 +227,15 @@ button:hover, .btn:hover {
   color: var(--muted);
   border-top: 1px solid rgba(148,163,184,.15);
 }
+
+/* ===========================
+   form
+   =========================== */
+.form-status {
+  margin-top: .75rem;
+  font-size: .95rem;
+  min-height: 1.2em;
+}
+.form-status.loading { color: var(--muted); }
+.form-status.ok { color: #16a34a; }     /* green */
+.form-status.err { color: #ef4444; }    /* red */
