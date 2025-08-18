@@ -376,3 +376,6 @@ button:hover, .btn:hover {
 .form-status.loading { color: var(--muted); }
 .form-status.ok { color: #16a34a; }     /* green */
 .form-status.err { color: #ef4444; }    /* red */
+
+/* hero image*/
+.hero__img{border-radius:18px; border:1px solid rgba(148,163,184,.2); background:#0b1327; aspect-ratio:4/3; object-fit:cover}
