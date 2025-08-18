@@ -18,10 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const path = window.location.pathname.replace(/\/index\.html$/, '/');
   const map = {
     home: ['/', '/index.html'],
-    about: ['/about.html'],
-    projects: ['/projects.html'],
-    blog: ['/blog.html'],
-    contact: ['/contact.html'],
+    about: ['/about/', '/about.html'],
+    projects: ['/projects/', '/projects.html'],
+    blog: ['/blog/', '/blog.html'],
+    contact: ['/contact/', '/contact.html'],
   };
   document.querySelectorAll('.site-nav [data-link]').forEach(a => {
     const key = a.getAttribute('data-link');
