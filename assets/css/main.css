@@ -94,6 +94,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .site-nav {
   display: flex;
+  align-items:center;
   gap: 1.5rem;
 }
 
@@ -135,6 +136,22 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text);
     font-size: 1.5rem;
     cursor: pointer;
+  }
+}
+
+.site-nav .theme-toggle{
+  margin-left:auto;  /* <-- sends it to the far right */
+}
+
+/* Mobile: stack links but keep the toggle aligned to the right edge */
+@media (max-width:800px){
+  .site-nav{
+    flex-direction:column;
+    align-items:stretch;   /* links full width */
+  }
+  .site-nav .theme-toggle{
+    margin-left:0;
+    align-self:flex-end;   /* toggle hugs the right edge */
   }
 }
 
