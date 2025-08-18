@@ -1,0 +1,52 @@
+/* ===========================
+   Header / Navigation
+   =========================== */
+.site-header {
+  position: sticky; top: 0; z-index: 20;
+  backdrop-filter: blur(8px);
+  background: color-mix(in oklab, var(--bg) 70%, transparent);
+  border-bottom: 1px solid color-mix(in oklab, var(--muted) 22%, transparent);
+  transition: background .3s ease;
+}
+
+.nav-wrap { display:flex; align-items:center; justify-content:space-between; padding:.9rem 0; }
+.logo { font-weight: 800; font-size: 1.25rem; color: var(--text); letter-spacing: .3px; }
+.logo .accent { color: var(--accent); }
+
+.site-nav { display: flex; align-items: center; gap: 1.5rem; }
+.site-nav a {
+  font-weight: 500;
+  color: color-mix(in oklab, var(--text) 88%, white);
+  transition: color .2s;
+  padding: .45rem .7rem; border-radius: 10px;
+}
+.site-nav a:hover {
+  color: var(--accent);
+  background: color-mix(in oklab, var(--accent) 18%, transparent);
+}
+.site-nav a.active {
+  color: var(--primary);
+  background: color-mix(in oklab, var(--accent) 18%, transparent);
+}
+
+/* mobile toggle button */
+.nav-toggle{
+  display:none; background:transparent;
+  border:1px solid color-mix(in oklab, var(--muted) 25%, transparent);
+  color:var(--text); padding:.4rem .6rem; border-radius:10px;
+}
+
+/* push theme switch to right end */
+.site-nav .theme-toggle { margin-left: auto; }
+
+/* Mobile menu */
+@media (max-width: 800px) {
+  .nav-toggle { display: block; }
+  .site-nav {
+    display:none; position:absolute; right:4%; top:58px; flex-direction:column;
+    background: color-mix(in oklab, var(--bg) 90%, #0b1327 10%);
+    padding:.8rem; border:1px solid color-mix(in oklab, var(--muted) 22%, transparent); border-radius:12px;
+  }
+  .site-nav.open { display:flex; }
+  .site-nav .theme-toggle { margin-left: 0; align-self: flex-end; }
+}

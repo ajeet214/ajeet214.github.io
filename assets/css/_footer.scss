@@ -1,0 +1,15 @@
+/* ===========================
+   Footer
+   =========================== */
+.site-footer{
+  margin:3rem 0 2rem;
+  border-top:1px solid color-mix(in oklab, var(--muted) 22%, transparent);
+  padding-top:1rem;
+}
+.footer-grid{
+  display:grid; grid-template-columns:2fr 1fr 1fr; gap:1rem; align-items:center;
+}
+.footer-links{ display:flex; gap:.8rem; flex-wrap:wrap }
+.copy{ text-align:right }
+.muted{ color:var(--muted) }
+.contact-list{ line-height:1.9 }
