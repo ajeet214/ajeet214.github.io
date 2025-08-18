@@ -140,3 +140,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+document.querySelectorAll('.theme-toggle input').forEach(input => {
+  const thumb = input.nextElementSibling.querySelector('.theme-toggle__thumb');
+  input.addEventListener('click', () => {
+    thumb.classList.remove('ripple');
+    void thumb.offsetWidth; // reflow to restart animation
+    thumb.classList.add('ripple');
+  });
+});
