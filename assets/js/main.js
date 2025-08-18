@@ -50,6 +50,37 @@ document.addEventListener('DOMContentLoaded', () => {
   const switchInput = document.getElementById('themeSwitch');
   if (!switchInput) return;
 
+  const current = document.documentElement.getAttribute('data-theme') || 'light';
+  switchInput.checked = (current === 'dark');
+  switchInput.setAttribute('aria-checked', String(switchInput.checked));
+
+  function setTheme(next) {
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    const isDark = (next === 'dark');
+    switchInput.checked = isDark;
+    switchInput.setAttribute('aria-checked', String(isDark));
+
+    // NEW: announce to screen readers
+    if (status) {
+      status.textContent = isDark ? 'Dark mode enabled' : 'Light mode enabled';
+    }
+  }
+
+  switchInput.addEventListener('change', () => {
+    setTheme(switchInput.checked ? 'dark' : 'light');
+  });
+
+  switchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); setTheme('dark'); }
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); setTheme('light'); }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const switchInput = document.getElementById('themeSwitch');
+  if (!switchInput) return;
+
   const thumb = switchInput.nextElementSibling
     ? switchInput.nextElementSibling.querySelector('.theme-toggle__thumb')
     : null;
