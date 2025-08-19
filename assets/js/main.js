@@ -154,3 +154,59 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// -----------------------------
+// --- Projects: search + tag filter
+// -----------------------------
+document.addEventListener('DOMContentLoaded', () => {
+  const grid = document.getElementById('projectsGrid');
+  if (!grid) return;
+
+  const cards = Array.from(grid.querySelectorAll('.project'));
+  const search = document.getElementById('projectSearch');
+  const chips = Array.from(document.querySelectorAll('.proj-filters .chip'));
+  const empty = document.getElementById('projectsEmpty');
+
+  let activeTag = 'all';
+  let term = '';
+
+  function matches(card){
+    const title = (card.dataset.title || '').toLowerCase();
+    const desc  = (card.dataset.desc || '').toLowerCase();
+    const techs = (card.dataset.tech || '').split(',').map(s=>s.trim().toLowerCase());
+
+    const byText = !term || title.includes(term) || desc.includes(term) || techs.some(t=>t.includes(term));
+    const byTag  = activeTag === 'all' || techs.includes(activeTag.toLowerCase());
+    return byText && byTag;
+  }
+
+  function apply(){
+    let visible = 0;
+    cards.forEach(c => {
+      const show = matches(c);
+      c.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    empty.style.display = visible ? 'none' : '';
+  }
+
+  // search
+  if (search){
+    search.addEventListener('input', () => {
+      term = search.value.trim().toLowerCase();
+      apply();
+    });
+  }
+
+  // tag chips
+  chips.forEach(btn => {
+    btn.addEventListener('click', () => {
+      chips.forEach(b => b.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+      activeTag = btn.dataset.filter || 'all';
+      apply();
+    });
+  });
+
+  apply(); // initial
+});
