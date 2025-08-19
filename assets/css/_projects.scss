@@ -1,0 +1,42 @@
+/* assets/css/_projects.scss */
+
+/* Controls wrapper */
+.projects-controls{
+  display:grid;
+  gap:.75rem;
+  grid-template-columns: 1fr auto;
+  align-items:center;
+  margin:1rem 0 1.25rem;
+}
+
+/* Search input */
+.proj-input{
+  padding:.6rem .8rem;
+  border-radius:10px;
+  border:1px solid color-mix(in oklab, var(--muted) 25%, transparent);
+  background:var(--card);
+  color:var(--text);
+  outline:none;
+  box-shadow:none;
+}
+.proj-input:focus{
+  box-shadow:0 0 0 3px var(--ring);
+}
+
+/* Filter chips */
+.proj-filters{ display:flex; gap:.5rem; flex-wrap:wrap; justify-content:flex-end; }
+
+.chip{
+  appearance:none;
+  border:1px solid color-mix(in oklab, var(--muted) 30%, transparent);
+  background:color-mix(in oklab, var(--bg) 85%, var(--card) 15%);
+  color:var(--text);
+  padding:.35rem .65rem;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:500;
+}
+.chip[aria-pressed="true"]{
+  background: color-mix(in oklab, var(--accent) 18%, transparent);
+  border-color: color-mix(in oklab, var(--accent) 45%, transparent);
+}
