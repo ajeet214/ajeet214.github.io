@@ -1,5 +1,5 @@
 /* ===========================
-   Buttons, Tags, Lists
+   Buttons, Lists
    =========================== */
 button, .btn{
   background: var(--primary);
@@ -7,16 +7,6 @@ button, .btn{
   border-radius:.5rem; font-weight:600; cursor:pointer; transition: background .2s ease;
 }
 button:hover, .btn:hover { background: var(--accent); }
-
-.tags{ display:flex; flex-wrap:wrap; gap:.4rem; margin:.6rem 0 }
-.tags span{
-  background: color-mix(in oklab, var(--bg) 70%, var(--card) 30%);
-  border:1px solid color-mix(in oklab, var(--muted) 28%, transparent);
-  padding:.18rem .5rem; border-radius:999px;
-  color: color-mix(in oklab, var(--text) 82%, black);
-  font-size:.82rem;
-}
-.tags--lg span{ font-size:.9rem; padding:.28rem .7rem }
 
 .list{ padding-left:1rem }
 .timeline{ padding-left:1rem }
