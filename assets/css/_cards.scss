@@ -7,17 +7,12 @@
   box-shadow: 0 10px 30px color-mix(in oklab, black 28%, var(--bg) 72%);
 }
 .card__img{ border-radius:12px; border:1px solid color-mix(in oklab, var(--muted) 22%, transparent); margin-bottom:.8rem }
-
-.section-title { font-size:1.3rem; margin:2rem 0 1rem }
-.grid { display:grid; gap:1rem }
-.grid--cards { grid-template-columns: repeat(3, 1fr) }
-@media (max-width:1000px){ .grid--cards{ grid-template-columns:repeat(2,1fr) } }
-@media (max-width:640px){ .grid--cards{ grid-template-columns:1fr } }
 */
 .card {
   background: var(--card-bg, #fff);
   border: 1px solid var(--card-border, #eaeaea);
-  border-radius: 12px;
+  border-radius:16px; padding:1rem;
+  box-shadow: 0 10px 30px color-mix(in oklab, black 28%, var(--bg) 72%);
   overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 
@@ -48,3 +43,9 @@
     color: var(--accent-color, #0077ff); // <-- customize this hover text color
   }
 }
+
+.section-title { font-size:1.3rem; margin:2rem 0 1rem }
+.grid { display:grid; gap:1rem }
+.grid--cards { grid-template-columns: repeat(3, 1fr) }
+@media (max-width:1000px){ .grid--cards{ grid-template-columns:repeat(2,1fr) } }
+@media (max-width:640px){ .grid--cards{ grid-template-columns:1fr } }
