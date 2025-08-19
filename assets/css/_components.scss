@@ -1,5 +1,5 @@
 /* ===========================
-   Buttons, Cards, Tags, Lists
+   Buttons, Tags, Lists
    =========================== */
 button, .btn{
   background: var(--primary);
@@ -7,22 +7,6 @@ button, .btn{
   border-radius:.5rem; font-weight:600; cursor:pointer; transition: background .2s ease;
 }
 button:hover, .btn:hover { background: var(--accent); }
-
-.card{
-  background: linear-gradient(180deg,
-    color-mix(in oklab, var(--card) 96%, transparent),
-    color-mix(in oklab, var(--card) 78%, transparent));
-  border:1px solid color-mix(in oklab, var(--muted) 22%, transparent);
-  border-radius:16px; padding:1rem;
-  box-shadow: 0 10px 30px color-mix(in oklab, black 28%, var(--bg) 72%);
-}
-.card__img{ border-radius:12px; border:1px solid color-mix(in oklab, var(--muted) 22%, transparent); margin-bottom:.8rem }
-
-.section-title { font-size:1.3rem; margin:2rem 0 1rem }
-.grid { display:grid; gap:1rem }
-.grid--cards { grid-template-columns: repeat(3, 1fr) }
-@media (max-width:1000px){ .grid--cards{ grid-template-columns:repeat(2,1fr) } }
-@media (max-width:640px){ .grid--cards{ grid-template-columns:1fr } }
 
 .tags{ display:flex; flex-wrap:wrap; gap:.4rem; margin:.6rem 0 }
 .tags span{
