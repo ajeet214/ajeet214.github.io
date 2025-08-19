@@ -210,3 +210,76 @@ document.addEventListener('DOMContentLoaded', () => {
 
   apply(); // initial
 });
+
+// --- Projects: make tags clickable to filter ---
+document.addEventListener('DOMContentLoaded', () => {
+  const grid = document.getElementById('projectsGrid');
+  if (!grid) return;
+
+  const chips = Array.from(document.querySelectorAll('.proj-filters .chip'));
+  const empty = document.getElementById('projectsEmpty');
+  const cards = Array.from(grid.querySelectorAll('.project'));
+
+  // Grab references to search/chips/apply from the first block if needed
+  const search = document.getElementById('projectSearch');
+
+  // Local state mirrors the earlier block
+  let activeTag = 'all';
+  let term = '';
+
+  // If these are defined above, you can remove these re-definitions and reuse.
+  function matches(card){
+    const title = (card.dataset.title || '').toLowerCase();
+    const desc  = (card.dataset.desc || '').toLowerCase();
+    const techs = (card.dataset.tech || '').split(',').map(s=>s.trim().toLowerCase());
+
+    const byText = !term || title.includes(term) || desc.includes(term) || techs.some(t=>t.includes(term));
+    const byTag  = activeTag === 'all' || techs.includes(activeTag.toLowerCase());
+    return byText && byTag;
+  }
+
+  function apply(){
+    let visible = 0;
+    cards.forEach(c => {
+      const show = matches(c);
+      c.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    if (empty) empty.style.display = visible ? 'none' : '';
+  }
+
+  function setFilter(tagLabel){
+    // normalize
+    const value = (tagLabel || 'all').trim();
+    activeTag = value === 'All' ? 'all' : value;
+
+    // update chips aria-state
+    chips.forEach(b => b.setAttribute('aria-pressed','false'));
+    const match = chips.find(b => (b.dataset.filter || b.textContent).toLowerCase() === activeTag.toLowerCase());
+    if (match) match.setAttribute('aria-pressed','true');
+
+    apply();
+  }
+
+  // Make existing tags inside cards interactive
+  grid.querySelectorAll('.tags span').forEach(tag => {
+    tag.setAttribute('role','button');
+    tag.setAttribute('aria-label', `Filter by ${tag.textContent.trim()}`);
+    tag.tabIndex = 0;
+
+    tag.addEventListener('click', () => setFilter(tag.textContent));
+    tag.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setFilter(tag.textContent);
+      }
+    });
+  });
+
+  // If your earlier block defined search/chips handlers, you don’t need to repeat them.
+  // Ensure activeTag/term reflect current UI when page loads:
+  const pressed = chips.find(b => b.getAttribute('aria-pressed') === 'true');
+  activeTag = (pressed?.dataset.filter || 'all');
+  term = (search?.value || '').trim().toLowerCase();
+  apply();
+});
