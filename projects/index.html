@@ -5,27 +5,64 @@ active: projects
 ---
 
 <h1>Projects</h1>
-<p>Selected work showcasing production-ready engineering and practical ML.</p>
-<div class="grid grid--cards">
-  <article class="card">
-    <img src="/assets/images/placeholder-project.png" alt="" class="card__img"/>
+<p class="muted">Selected work showcasing production-ready engineering and practical ML.</p>
+
+<!-- Controls -->
+<div class="projects-controls">
+  <input id="projectSearch" type="search" placeholder="Search projects… (e.g., LLM, FastAPI)" aria-label="Search projects" class="proj-input">
+  <div class="proj-filters" role="toolbar" aria-label="Project filters">
+    <button class="chip" data-filter="all" aria-pressed="true">All</button>
+    <button class="chip" data-filter="LLM">LLM</button>
+    <button class="chip" data-filter="FastAPI">FastAPI</button>
+    <button class="chip" data-filter="Elasticsearch">Elasticsearch</button>
+    <button class="chip" data-filter="Automation">Automation</button>
+    <button class="chip" data-filter="Selenium">Selenium</button>
+    <button class="chip" data-filter="Streamlit">Streamlit</button>
+    <button class="chip" data-filter="FAISS">FAISS</button>
+    <button class="chip" data-filter="OpenAI">OpenAI</button>
+  </div>
+</div>
+
+<!-- Grid -->
+<div id="projectsGrid" class="grid grid--cards" aria-live="polite">
+  <!-- Project 1 -->
+  <article class="card project"
+           data-title="Smart Elastic Search"
+           data-desc="Natural-language to Elasticsearch DSL with summarization. Built with FastAPI + LLM + ES."
+           data-tech="FastAPI,LLM,Elasticsearch">
+    <img src="{{ site.baseurl }}/assets/images/placeholder-project.png" alt="" class="card__img"/>
     <h3>Smart Elastic Search</h3>
     <p>LLM to DSL translator with query validation and result summarization.</p>
     <div class="tags"><span>FastAPI</span><span>LLM</span><span>Elasticsearch</span></div>
-    <a class="link" target="_blank" href="https://github.com/ajeet214/smart-elastic-search">GitHub</a>
+    <a class="link" target="_blank" rel="noopener" href="https://github.com/ajeet214/smart-elastic-search">GitHub</a>
   </article>
-  <article class="card">
-    <img src="/assets/images/placeholder-project.png" alt="" class="card__img"/>
+
+  <!-- Project 2 -->
+  <article class="card project"
+           data-title="Web Scraping Toolkit"
+           data-desc="Robust automation with Selenium + BeautifulSoup + pandas. Handles logins, iframes, proxies."
+           data-tech="Selenium,Automation">
+    <img src="{{ site.baseurl }}/assets/images/placeholder-project.png" alt="" class="card__img"/>
     <h3>Web Scraping Toolkit</h3>
     <p>Resilient scraping components with retries, rotating proxies, and exports.</p>
     <div class="tags"><span>Selenium</span><span>Automation</span></div>
-    <a class="link" target="_blank" href="https://github.com/ajeet214/Web_Scraping_with_Selenium">GitHub</a>
+    <a class="link" target="_blank" rel="noopener" href="https://github.com/ajeet214/Web_Scraping_with_Selenium">GitHub</a>
   </article>
-  <article class="card">
-    <img src="/assets/images/placeholder-project.png" alt="" class="card__img"/>
+
+  <!-- Project 3 -->
+  <article class="card project"
+           data-title="GenAI Smart Search"
+           data-desc="Semantic retrieval + summarization over spreadsheets, with Streamlit UI."
+           data-tech="Streamlit,FAISS,OpenAI">
+    <img src="{{ site.baseurl }}/assets/images/placeholder-project.png" alt="" class="card__img"/>
     <h3>GenAI Smart Search</h3>
     <p>Semantic retrieval + summarization over spreadsheets, with Streamlit UI.</p>
     <div class="tags"><span>Streamlit</span><span>FAISS</span><span>OpenAI</span></div>
-    <a class="link" target="_blank" href="https://github.com/ajeet214/smart_search">GitHub</a>
+    <a class="link" target="_blank" rel="noopener" href="https://github.com/ajeet214/smart_search">GitHub</a>
   </article>
+</div>
+
+<!-- Empty state -->
+<div id="projectsEmpty" class="muted" style="display:none;margin-top:.5rem">
+  No projects match your filters.
 </div>
