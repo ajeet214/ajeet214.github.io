@@ -1,0 +1,27 @@
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+  margin:.6rem 0;
+
+  span {
+    background: color-mix(in oklab, var(--bg) 70%, var(--card) 30%);
+    border:1px solid color-mix(in oklab, var(--muted) 28%, transparent);
+    color: var(--tag-text, #333);
+    color: color-mix(in oklab, var(--text) 82%, black);
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding:.18rem .5rem; border-radius:999px;
+    border-radius: 20px;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+
+    &:hover {
+      background: var(--accent-color, #0077ff);
+      color: #fff;
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+  }
+}
+.tags--lg span{ font-size:.9rem; padding:.28rem .7rem }
