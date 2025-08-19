@@ -40,3 +40,12 @@
   background: color-mix(in oklab, var(--accent) 18%, transparent);
   border-color: color-mix(in oklab, var(--accent) 45%, transparent);
 }
+
+#projectClear {
+  background-color: var(--gray-100);
+  color: var(--text-color);
+}
+#projectClear:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+}
