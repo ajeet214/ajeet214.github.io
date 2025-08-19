@@ -18,7 +18,7 @@
 
     &:hover {
       color: #fff;
-      transform: scale(1.05);
+      transform: translateY(-1px) scale(1.05);
       cursor: pointer;
     }
   }

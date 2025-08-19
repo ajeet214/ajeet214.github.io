@@ -6,11 +6,12 @@
   border-radius:16px; padding:1rem;
   box-shadow: 0 10px 30px color-mix(in oklab, black 28%, var(--bg) 72%);
   overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
 
   &:hover {
     transform: translateY(-6px) scale(1.02);
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+    border-color: color-mix(in oklab, var(--accent) 35%, transparent);
   }
 
   .card__img {
