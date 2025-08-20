@@ -1,0 +1,39 @@
+/* Blog cards */
+.blog-grid .post-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-card__media {
+  display: block;
+  margin-bottom: .75rem;
+}
+
+.post-card__header {
+  margin-bottom: .3rem;
+}
+
+.post-card__title {
+  margin: 0;
+  line-height: 1.25;
+}
+
+.post-meta {
+  margin: .15rem 0 0;
+  font-size: .9rem;
+  color: var(--muted);
+}
+
+.post-card__excerpt {
+  margin: .4rem 0 .6rem;
+}
+
+.post-card__footer {
+  margin-top: auto; /* push footer to bottom so cards align neatly */
+}
+
+/* Optional: slightly richer hover state specific to blog cards */
+.post-card:hover .post-card__title .link {
+  color: var(--primary);
+  text-decoration: underline;
+}
