@@ -1,0 +1,44 @@
+---
+layout: default
+---
+
+<main class="container">
+  <article class="card" style="padding:1.25rem">
+    <header>
+      <h1 style="margin:.25rem 0">{{ page.title }}</h1>
+      {% if page.date %}
+        <p class="muted" style="margin:.25rem 0 0">
+          {{ page.date | date: "%B %-d, %Y" }}
+          {% if page.tags and page.tags.size > 0 %} •
+            {% for t in page.tags %}
+              <span>{{ t }}</span>{% unless forloop.last %}, {% endunless %}
+            {% endfor %}
+          {% endif %}
+        </p>
+      {% endif %}
+      {% if page.image_url %}
+        <img src="{{ page.image_url }}" alt="" class="card__img" style="margin-top:.75rem">
+      {% endif %}
+    </header>
+
+    {% if page.excerpt %}
+      <hr style="margin:1rem 0;border:none;border-top:1px solid color-mix(in oklab, var(--muted) 22%, transparent)">
+      <p>{{ page.excerpt }}</p>
+    {% endif %}
+
+    <div style="margin-top:1rem; display:flex; gap:.75rem; flex-wrap:wrap">
+      {% if page.medium_url %}
+        <a class="btn btn--sm" target="_blank" rel="noopener" href="{{ page.medium_url }}">Read on Medium →</a>
+      {% endif %}
+      <a class="btn btn--ghost btn--sm" href="{{ '/blog/' | relative_url }}">← Back to Blog</a>
+    </div>
+
+    {%- comment -%}
+      If you want *instant redirect* to Medium instead of showing this stub,
+      uncomment the meta refresh below:
+
+      <meta http-equiv="refresh" content="0; url={{ page.medium_url }}">
+      <link rel="canonical" href="{{ page.medium_url }}">
+    {%- endcomment -%}
+  </article>
+</main>
