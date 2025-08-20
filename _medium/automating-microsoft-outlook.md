@@ -1,5 +1,4 @@
 ---
-layout: medium_post
 title: "🚀 Automating Microsoft Outlook and Excel with Python’s win32com"
 date: 2025-08-12
 tags: [python, automation, pywin32, windows automation, outlook]

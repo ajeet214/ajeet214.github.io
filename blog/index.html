@@ -7,20 +7,21 @@ active: blog
 <h1>Blog</h1>
 <p class="muted">I publish long-form posts on Medium. Latest entries below.</p>
 
+{%- assign entries = site.medium | sort: "date" | reverse -%}
+
 <div class="grid blog-grid" aria-live="polite" style="gap:1rem">
-  {%- assign posts_sorted = site.posts | sort: "date" | reverse -%}
-  {%- for post in posts_sorted -%}
+  {%- for post in entries -%}
     <article class="card post-card post-card--row">
       <!-- Left thumbnail -->
       <a class="post-card__thumb"
-         href="{{ post.medium_url | default: post.url | relative_url }}"
+         href="{{ post.medium_url }}"
          target="_blank" rel="noopener"
          aria-label="Read: {{ post.title | escape }}">
         <img
           class="post-card__img"
           loading="lazy"
           decoding="async"
-          src="{{ post.image_url | default: '/assets/images/placeholder-project.png' | relative_url }}"
+          src="{{ post.image_url }}"
           alt=""
           width="320" height="200">
       </a>
@@ -29,14 +30,15 @@ active: blog
       <div class="post-card__content">
         <header class="post-card__header">
           <h3 class="post-card__title">
-            <a class="link"
-               href="{{ post.medium_url | default: post.url | relative_url }}"
-               target="_blank" rel="noopener">
+            <a class="link" href="{{ post.medium_url }}" target="_blank" rel="noopener">
               {{ post.title }}
             </a>
           </h3>
           <p class="post-meta">
-            {% if post.date %}<time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time> • {% endif %}Medium
+            {% if post.date %}
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time> •
+            {% endif %}
+            Medium
           </p>
         </header>
 
@@ -51,11 +53,7 @@ active: blog
         {% endif %}
 
         <div class="post-card__footer">
-          <a class="link"
-             href="{{ post.medium_url | default: post.url | relative_url }}"
-             target="_blank" rel="noopener">
-            Read on Medium →
-          </a>
+          <a class="link" href="{{ post.medium_url }}" target="_blank" rel="noopener">Read on Medium →</a>
         </div>
       </div>
     </article>
