@@ -37,3 +37,67 @@
   color: var(--primary);
   text-decoration: underline;
 }
+
+
+
+/* Row-style blog cards: thumbnail left, content right */
+.post-card--row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+/* Thumbnail container (fixed footprint) */
+.post-card__thumb {
+  flex: 0 0 auto;
+  display: block;
+  width: 180px;              /* ← adjust to taste */
+  aspect-ratio: 16 / 10;     /* consistent shape */
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--muted) 22%, transparent);
+  background: color-mix(in oklab, var(--bg) 85%, #0b1327 15%);
+}
+
+/* The image fills the thumb box and is cropped nicely */
+.post-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;         /* key for cropping */
+  display: block;
+}
+
+/* Right-side content */
+.post-card__content {
+  flex: 1 1 auto;
+  min-width: 0;              /* prevent overflow in flex row */
+}
+
+.post-card__title { margin: 0; line-height: 1.25; }
+.post-meta { margin: .2rem 0 .4rem; font-size: .9rem; color: var(--muted); }
+.post-card__excerpt { margin: .25rem 0 .6rem; }
+
+/* Optional: clamp excerpts to 3 lines for tidy rows */
+.post-card__excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Hover polish */
+.post-card:hover .post-card__title .link {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 640px) {
+  .post-card--row {
+    flex-direction: column;
+  }
+  .post-card__thumb {
+    width: 100%;
+    aspect-ratio: 16 / 9;    /* a bit wider when stacked */
+  }
+}
