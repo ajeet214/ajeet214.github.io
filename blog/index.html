@@ -3,51 +3,61 @@ layout: default
 title: "Blog"
 active: blog
 ---
+
 <h1>Blog</h1>
-<p class="muted">Short essays on GenAI, ML systems, and practical engineering.</p>
+<p class="muted">I publish long-form posts on Medium. Latest entries below.</p>
 
-<div class="grid grid--cards blog-grid" aria-live="polite">
+<div class="grid blog-grid" aria-live="polite" style="gap:1rem">
+  {%- assign posts_sorted = site.posts | sort: "date" | reverse -%}
+  {%- for post in posts_sorted -%}
+    <article class="card post-card post-card--row">
+      <!-- Left thumbnail -->
+      <a class="post-card__thumb"
+         href="{{ post.medium_url | default: post.url | relative_url }}"
+         target="_blank" rel="noopener"
+         aria-label="Read: {{ post.title | escape }}">
+        <img
+          class="post-card__img"
+          loading="lazy"
+          decoding="async"
+          src="{{ post.image_url | default: '/assets/images/placeholder-project.png' | relative_url }}"
+          alt=""
+          width="320" height="200">
+      </a>
 
-  <article class="card post-card post-card--row">
-    <!-- Left thumbnail -->
-    <a class="post-card__thumb"
-       href="https://medium.com/@YOUR_MEDIUM/robust-rag-pipelines-…" target="_blank" rel="noopener"
-       aria-label="Read: Designing Robust RAG Pipelines">
-      <img
-        class="post-card__img"
-        loading="lazy"
-        decoding="async"
-        src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*YourMediumImageHash.png"
-        alt="Cover image for Robust RAG Pipelines"
-        width="320" height="200"
-      >
-    </a>
+      <!-- Right content -->
+      <div class="post-card__content">
+        <header class="post-card__header">
+          <h3 class="post-card__title">
+            <a class="link"
+               href="{{ post.medium_url | default: post.url | relative_url }}"
+               target="_blank" rel="noopener">
+              {{ post.title }}
+            </a>
+          </h3>
+          <p class="post-meta">
+            {% if post.date %}<time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time> • {% endif %}Medium
+          </p>
+        </header>
 
-    <!-- Right content -->
-    <div class="post-card__content">
-      <header class="post-card__header">
-        <h3 class="post-card__title">
-          <a class="link" href="https://medium.com/@YOUR_MEDIUM/robust-rag-pipelines-…" target="_blank" rel="noopener">
-            Designing Robust RAG Pipelines
+        {% if post.excerpt %}
+          <p class="post-card__excerpt">{{ post.excerpt }}</p>
+        {% endif %}
+
+        {% if post.tags and post.tags.size > 0 %}
+          <div class="tags">
+            {% for t in post.tags %}<span>{{ t }}</span>{% endfor %}
+          </div>
+        {% endif %}
+
+        <div class="post-card__footer">
+          <a class="link"
+             href="{{ post.medium_url | default: post.url | relative_url }}"
+             target="_blank" rel="noopener">
+            Read on Medium →
           </a>
-        </h3>
-        <p class="post-meta">
-          <time datetime="2025-07-28">Jul 28, 2025</time> • Medium
-        </p>
-      </header>
-
-      <p class="post-card__excerpt">
-        A practical blueprint for retrieval quality, grounding, observability, and evaluation in production RAG.
-      </p>
-
-      <div class="tags"><span>RAG</span><span>LLM</span><span>Evaluation</span></div>
-
-      <div class="post-card__footer">
-        <a class="link" href="https://medium.com/@YOUR_MEDIUM/robust-rag-pipelines-…" target="_blank" rel="noopener">
-          Read on Medium →
-        </a>
+        </div>
       </div>
-    </div>
-  </article>
+    </article>
+  {%- endfor -%}
 </div>
-
