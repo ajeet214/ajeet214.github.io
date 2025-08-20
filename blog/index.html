@@ -38,7 +38,7 @@ active: blog
             {% if post.date %}
               <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time> •
             {% endif %}
-            Medium
+            {{ post.read_time }}
           </p>
         </header>
 
