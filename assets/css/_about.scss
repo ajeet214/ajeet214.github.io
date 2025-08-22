@@ -14,6 +14,7 @@
     color-mix(in oklab, var(--card) 96%, transparent),
     color-mix(in oklab, var(--card) 78%, transparent));
   border-radius: 16px;
+  margin-top: 1.5rem;
 }
 
 .profile-pic {
@@ -99,4 +100,15 @@
 .reveal { opacity: 0; transform: translateY(8px); }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 640px) {
+  .profile-card {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+  .profile-pic {
+    width: 96px; height: 96px;
+  }
 }
