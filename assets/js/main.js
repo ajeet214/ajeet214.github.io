@@ -254,3 +254,25 @@ document.addEventListener('DOMContentLoaded', () => {
   term = (search?.value || '').trim().toLowerCase();
   apply();
 });
+
+// About
+document.addEventListener('DOMContentLoaded', () => {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) return;
+
+  const els = Array.from(document.querySelectorAll('.reveal'));
+  if (!els.length) return;
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.transition = 'opacity .4s ease, transform .4s ease';
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'none';
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  els.forEach(el => io.observe(el));
+});
