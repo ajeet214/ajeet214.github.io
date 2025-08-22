@@ -1,0 +1,102 @@
+/* ===== About Page ===== */
+
+.wrap { margin-top: 1.5rem; }
+
+/* Profile card */
+.profile-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid color-mix(in oklab, var(--muted) 22%, transparent);
+  background: linear-gradient(180deg,
+    color-mix(in oklab, var(--card) 96%, transparent),
+    color-mix(in oklab, var(--card) 78%, transparent));
+  border-radius: 16px;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  border: 1px solid color-mix(in oklab, var(--muted) 22%, transparent);
+  width: 112px; height: 112px; object-fit: cover;
+  background: color-mix(in oklab, var(--bg) 85%, #0b1327 15%);
+}
+
+.profile-meta { min-width: 0; }
+.profile-name { margin: 0; }
+.profile-role { margin: .2rem 0 .4rem; }
+.profile-bio  { margin: 0 0 .6rem; }
+.profile-quick { display:flex; gap:.5rem; flex-wrap:wrap; }
+
+/* Skills grid */
+.skills-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 900px) { .skills-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .skills-grid { grid-template-columns: 1fr; } }
+
+.skills-col h3 { margin: .2rem 0 .5rem; }
+
+/* Chips */
+.chips { display:flex; flex-wrap:wrap; gap:.4rem; }
+.chip {
+  display:inline-block;
+  padding: .28rem .6rem;
+  font-size: .9rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--bg) 70%, var(--card) 30%);
+  color: color-mix(in oklab, var(--text) 82%, black);
+  border: 1px solid color-mix(in oklab, var(--muted) 28%, transparent);
+}
+
+/* Timeline */
+.timeline { list-style: none; padding: 0; margin: 0; }
+.timeline--vertical {
+  position: relative;
+  margin-left: 0.4rem;
+  padding-left: 1.25rem;
+}
+.timeline--vertical::before {
+  content: "";
+  position: absolute;
+  left: 0.45rem; top: 0; bottom: 0;
+  width: 2px;
+  background: color-mix(in oklab, var(--muted) 26%, transparent);
+}
+
+.timeline-item {
+  position: relative;
+  margin: 0 0 1rem 0;
+}
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -0.1rem; /* centers dot over the line */
+  top: .35rem;
+  width: .7rem; height: .7rem;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 55%, transparent);
+}
+
+.timeline-date {
+  display: block;
+  font-size: .9rem;
+  color: var(--muted);
+  margin: 0 0 .25rem;
+}
+
+.timeline-card { padding: 1rem; }
+.timeline-title { margin: 0 0 .35rem; }
+
+/* CTA card */
+.about-cta .card { padding: 1.25rem; }
+
+/* Subtle reveal animation (respects reduced motion) */
+.reveal { opacity: 0; transform: translateY(8px); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; }
+}
