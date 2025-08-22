@@ -3,15 +3,109 @@ layout: default
 title: "About"
 active: about
 ---
-<h1>About</h1>
-<p>I’m Ajeet Verma, an AI/ML Engineer and Data Scientist with hands-on experience in CV, NLP, and GenAI. I care about robust engineering, readable code, and outcome-driven ML.</p>
-<h2>Skills</h2>
-<div class="tags tags--lg">
-  <span>Python</span><span>FastAPI</span><span>Elasticsearch</span><span>PyTorch</span>
-  <span>Computer Vision</span><span>RAG</span><span>Azure</span><span>AWS</span>
-</div>
-<h2>Experience</h2>
-<ul class="timeline">
-  <li><strong>FPT Software</strong> — Senior AI/ML Engineer (2021–present)</li>
-  <li><strong>Viettel Smart City</strong> — Computer Vision Engineer</li>
-</ul>
+
+<!-- Profile / Intro -->
+<section class="profile-card reveal">
+  <img
+    class="profile-pic"
+    src="https://avatars.githubusercontent.com/u/000000?v=4"  <!-- swap to your photo or /assets/images/profile.jpg -->
+    alt="Ajeet Verma"
+    width="128" height="128"
+  />
+  <div class="profile-meta">
+    <h1 class="profile-name">Ajeet Verma</h1>
+    <p class="profile-role muted">AI/ML Engineer • Data Scientist</p>
+    <p class="profile-bio">
+      I build reliable AI systems across GenAI, CV, and NLP — with a focus on robust engineering, clear code, and business impact.
+    </p>
+    <div class="profile-quick">
+      <a class="btn btn--sm" href="{{ '/contact/' | relative_url }}">Contact</a>
+      <a class="btn btn--ghost btn--sm" href="https://www.linkedin.com/in/ajeet214/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn--ghost btn--sm" href="https://github.com/ajeet214" target="_blank" rel="noopener">GitHub</a>
+      <!-- Optional: resume -->
+      <!-- <a class="btn btn--ghost btn--sm" href="{{ '/assets/resume/ajeet-verma.pdf' | relative_url }}" target="_blank" rel="noopener">Download CV</a> -->
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section class="skills wrap reveal">
+  <h2>Skills</h2>
+  <div class="skills-grid">
+    <div class="skills-col">
+      <h3>Languages & Frameworks</h3>
+      <div class="chips">
+        <span class="chip">Python</span>
+        <span class="chip">FastAPI</span>
+        <span class="chip">PyTorch</span>
+        <span class="chip">Streamlit</span>
+      </div>
+    </div>
+    <div class="skills-col">
+      <h3>Search & Data</h3>
+      <div class="chips">
+        <span class="chip">Elasticsearch</span>
+        <span class="chip">RAG</span>
+        <span class="chip">FAISS</span>
+        <span class="chip">pandas</span>
+      </div>
+    </div>
+    <div class="skills-col">
+      <h3>Cloud & Ops</h3>
+      <div class="chips">
+        <span class="chip">Azure</span>
+        <span class="chip">AWS</span>
+        <span class="chip">Docker</span>
+        <span class="chip">CI/CD</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Experience Timeline -->
+<section class="experience wrap reveal">
+  <h2>Experience</h2>
+  <ul class="timeline timeline--vertical">
+    <li class="timeline-item">
+      <span class="timeline-date">2021 — Present</span>
+      <div class="timeline-card card">
+        <h3 class="timeline-title">Senior AI/ML Engineer — FPT Software</h3>
+        <p>
+          Led projects in computer vision, RAG systems, and cloud ML solutions. Designed evaluation harnesses and tracing for LLM features in production.
+        </p>
+        <ul class="list">
+          <li>Architected RAG pipelines with observability and guardrails</li>
+          <li>Delivered CV deployments (OCR, object detection)</li>
+          <li>FastAPI services with monitoring & autoscaling</li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="timeline-item">
+      <span class="timeline-date">2019 — 2021</span>
+      <div class="timeline-card card">
+        <h3 class="timeline-title">Computer Vision Engineer — Viettel Smart City</h3>
+        <p>
+          Built and deployed deep learning models for smart surveillance and OCR on edge/cloud environments.
+        </p>
+        <ul class="list">
+          <li>Classical + DL pipelines for license plates & documents</li>
+          <li>Model optimization for throughput and latency</li>
+          <li>Cross-team collaboration with product and ops</li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- Call to action -->
+<section class="about-cta wrap reveal">
+  <div class="card">
+    <h2>Let’s work together</h2>
+    <p class="muted">Open to collaborations, consulting, and interesting problems.</p>
+    <div style="display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.5rem">
+      <a class="btn btn--primary" href="{{ '/contact/' | relative_url }}">Get in touch</a>
+      <a class="btn btn--ghost" href="{{ '/projects/' | relative_url }}">View projects</a>
+    </div>
+  </div>
+</section>
