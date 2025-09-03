@@ -314,3 +314,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// Language dropdown toggle
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('langDropdown');
+  const menu = document.getElementById('langMenu');
+  const current = document.getElementById('currentLang');
+
+  if (!btn || !menu) return;
+
+  btn.addEventListener('click', () => {
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!expanded));
+    menu.hidden = expanded;
+  });
+
+  // Save selected language
+  menu.querySelectorAll('a[data-lang]').forEach(link => {
+    link.addEventListener('click', () => {
+      const lang = link.dataset.lang;
+      localStorage.setItem('preferredLang', lang);
+      current.textContent = link.textContent.split(' ')[0]; // set flag + short name
+    });
+  });
+
+  // Close menu if clicked outside
+  document.addEventListener('click', (e) => {
+    if (!btn.contains(e.target) && !menu.contains(e.target)) {
+      menu.hidden = true;
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+});

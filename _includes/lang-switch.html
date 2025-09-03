@@ -1,7 +1,10 @@
 <div class="lang-switch">
-
-  <!-- Default fallback is EN -->
-  <a href="/{{ current }}" lang="en" data-lang="en" {% if page.lang == "en" %}class="active"{% endif %}>🇺🇸</a> |
-  <a href="/vn/{{ current }}" lang="vi" data-lang="vn" {% if page.lang == "vn" %}class="active"{% endif %}>🇻🇳</a> |
-  <a href="/kr/{{ current }}" lang="ko" data-lang="kr" {% if page.lang == "kr" %}class="active"{% endif %}>🇰🇷</a>
+  <button id="langDropdown" class="lang-btn" aria-haspopup="listbox" aria-expanded="false">
+    🌐 <span id="currentLang">EN</span>
+  </button>
+  <ul id="langMenu" class="lang-menu" role="listbox" hidden>
+    <li><a href="/{{ current }}" data-lang="en" role="option">🇬🇧 English</a></li>
+    <li><a href="/vn/{{ current }}" data-lang="vn" role="option">🇻🇳 Tiếng Việt</a></li>
+    <li><a href="/kr/{{ current }}" data-lang="kr" role="option">🇰🇷 한국어</a></li>
+  </ul>
 </div>

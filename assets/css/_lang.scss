@@ -1,0 +1,48 @@
+.lang-switch {
+  position: relative;
+  display: inline-block;
+
+  .lang-btn {
+    background: var(--bg);
+    border: 1px solid var(--muted);
+    border-radius: 6px;
+    padding: 0.4em 0.8em;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+  }
+
+  .lang-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--bg);
+    border: 1px solid var(--muted);
+    border-radius: 6px;
+    margin-top: 4px;
+    list-style: none;
+    padding: 0.4em 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    z-index: 10;
+
+    li {
+      margin: 0;
+      padding: 0;
+
+      a {
+        display: block;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        color: var(--text);
+        font-size: 0.9rem;
+
+        &:hover {
+          background: var(--accent);
+          color: #fff;
+        }
+      }
+    }
+  }
+}
