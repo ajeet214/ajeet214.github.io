@@ -35,6 +35,7 @@
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(3, 1fr);
+  margin-top: .5rem;
 }
 @media (max-width: 900px) { .skills-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 640px) { .skills-grid { grid-template-columns: 1fr; } }
