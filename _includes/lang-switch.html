@@ -1,8 +1,7 @@
 <div class="lang-switch">
-  {% assign current = page.url | remove_first: '/' %}
 
   <!-- Default fallback is EN -->
-  <a href="/{{ current }}" lang="en" {% if page.lang == "en" %}class="active"{% endif %}>EN</a> |
-  <a href="/vn/{{ current }}" lang="vi" {% if page.lang == "vn" %}class="active"{% endif %}>VN</a> |
-  <a href="/kr/{{ current }}" lang="ko" {% if page.lang == "kr" %}class="active"{% endif %}>KR</a>
+  <a href="/{{ current }}" lang="en" data-lang="en" {% if page.lang == "en" %}class="active"{% endif %}>EN</a> |
+  <a href="/vn/{{ current }}" lang="vi" data-lang="vn" {% if page.lang == "vn" %}class="active"{% endif %}>VN</a> |
+  <a href="/kr/{{ current }}" lang="ko" data-lang="kr" {% if page.lang == "kr" %}class="active"{% endif %}>KR</a>
 </div>

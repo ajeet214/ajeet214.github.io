@@ -276,3 +276,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
   els.forEach(el => io.observe(el));
 });
+
+
+// -----------------------------
+// Auto language detection (runs only on root `/`)
+// -----------------------------
+document.addEventListener('DOMContentLoaded', () => {
+  const path = window.location.pathname;
+
+  // Only redirect if user is on the homepage root (not already in /vn/ or /kr/)
+  if (path === '/' || path === '/index.html') {
+    const saved = localStorage.getItem('preferredLang');
+    const browserLang = navigator.language || navigator.userLanguage;
+
+    // If user already selected a language before, respect that
+    if (saved && saved !== 'en') {
+      window.location.href = `/${saved}/`;
+      return;
+    }
+
+    // Otherwise, detect and redirect
+    if (browserLang.startsWith('vi')) {
+      localStorage.setItem('preferredLang', 'vn');
+      window.location.href = '/vn/';
+    } else if (browserLang.startsWith('ko')) {
+      localStorage.setItem('preferredLang', 'kr');
+      window.location.href = '/kr/';
+    }
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.lang-switch a[data-lang]').forEach(link => {
+    link.addEventListener('click', () => {
+      const lang = link.getAttribute('data-lang');
+      localStorage.setItem('preferredLang', lang);
+    });
+  });
+});
