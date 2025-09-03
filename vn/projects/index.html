@@ -1,0 +1,113 @@
+---
+layout: default
+title: "Projects"
+active: projects
+lang: vn
+---
+
+<h1>Projects</h1>
+<p class="muted">Selected work showcasing production-ready engineering and practical ML.</p>
+
+<!-- Controls -->
+<div class="projects-controls">
+  <input id="projectSearch" type="search" placeholder="Search projects… (e.g., LLM, FastAPI)" aria-label="Search projects" class="proj-input">
+  <div class="proj-filters" role="toolbar" aria-label="Project filters">
+    <button class="chip" data-filter="all" aria-pressed="true">All</button>
+    <button class="chip" data-filter="LLM">LLM</button>
+    <button class="chip" data-filter="FastAPI">FastAPI</button>
+    <button class="chip" data-filter="Elasticsearch">Elasticsearch</button>
+    <button class="chip" data-filter="Automation">Automation</button>
+    <button class="chip" data-filter="Selenium">Selenium</button>
+    <button class="chip" data-filter="Streamlit">Streamlit</button>
+    <button class="chip" data-filter="FAISS">FAISS</button>
+    <button class="chip" data-filter="OpenAI">OpenAI</button>
+    <button id="projectClear" class="chip" title="Clear filters">Clear</button>
+  </div>
+</div>
+
+<!-- Grid -->
+<div id="projectsGrid" class="grid grid--cards" aria-live="polite">
+  <!-- Project 1 -->
+  <article class="card project"
+           data-title="Smart Elastic Search"
+           data-desc="Natural-language to Elasticsearch DSL with summarization. Built with FastAPI + LLM + ES."
+           data-tech="FastAPI,LLM,Elasticsearch">
+    <img src="{{ site.baseurl }}/assets/images/placeholder-project.png" alt="" class="card__img"/>
+    <h3>Smart Elastic Search</h3>
+    <p>An LLM-powered semantic search system that bridges Elasticsearch with Azure OpenAI to provide natural language search over structured data.</p>
+    <div class="tags">
+      <span>fastapi</span>
+      <span>llm</span>
+      <span>elasticsearch</span>
+      <span>semantic-search</span>
+      <span>docker</span>
+      <span>python</span>
+      <span>azure-openai</span>
+      <span>genai</span>
+    </div>
+    <a class="link" target="_blank" rel="noopener" href="https://github.com/ajeet214/elastic_semantic_search">GitHub</a>
+  </article>
+
+  <!-- Project 2 -->
+  <article class="card project"
+           data-title="Web Scraping Toolkit"
+           data-desc="Robust automation with Selenium + BeautifulSoup + pandas. Handles logins, iframes, proxies."
+           data-tech="Selenium,Automation">
+    <img src="{{ site.baseurl }}/assets/images/placeholder-project.png" alt="" class="card__img"/>
+    <h3>Web Scraping Toolkit</h3>
+    <p>Resilient Web Scraping with real-world exercises of scraping data from various platforms.</p>
+    <div class="tags">
+      <span>selenium</span>
+      <span>automation</span>
+      <span>python</span>
+      <span>data</span>
+      <span>data mining</span>
+    </div>
+    <a class="link" target="_blank" rel="noopener" href="https://github.com/Help-the-community/Web_Scraping_with_Selenium">GitHub</a>
+  </article>
+
+  <!-- Project 3 -->
+  <article class="card project"
+           data-title="GenAI Smart Search"
+           data-desc="Semantic retrieval + summarization over spreadsheets, with Streamlit UI."
+           data-tech="Streamlit,FAISS,OpenAI">
+    <img src="{{ site.baseurl }}/assets/images/placeholder-project.png" alt="" class="card__img"/>
+    <h3>GenAI Smart Search</h3>
+    <p>A semantic search application that combines vector similarity search (FAISS) with Azure OpenAI's powerful LLMs to answer user queries over structured datasets.</p>
+    <div class="tags">
+      <span>llm</span>
+      <span>rag</span>
+      <span>vector-search</span>
+      <span>streamlit</span>
+      <span>vector-store</span>
+      <span>reranking</span>
+      <span>faiss</span>
+      <span>openai</span>
+    </div>
+    <a class="link" target="_blank" rel="noopener" href="https://github.com/ajeet214/smart_search">GitHub</a>
+  </article>
+  <!-- Project 4 -->
+  <article class="card project"
+           data-title="My Portfolio"
+           data-desc="My Portfolio Website"
+           data-tech="HTML, CSS, JS">
+    <img src="{{ site.baseurl }}/assets/images/placeholder-project.png" alt="" class="card__img"/>
+    <h3>My Portfolio</h3>
+    <p>My personal portfolio website showcasing my projects, blogs, experiences and applied AI/ML work, and so on.</p>
+    <div class="tags">
+      <span>html</span>
+      <span>css</span>
+      <span>js</span>
+      <span>jekyll</span>
+      <span>javascript</span>
+      <span>scss</span>
+      <span>portfolio</span>
+    </div>
+    <a class="link" target="_blank" rel="noopener" href="https://github.com/ajeet214/ajeet214.github.io">GitHub</a>
+  </article>
+</div>
+
+<!-- Empty state -->
+<div id="projectsEmpty" class="muted" style="display:none;margin-top:.5rem">
+  No projects match your filters.
+</div>

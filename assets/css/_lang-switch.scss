@@ -1,0 +1,16 @@
+.lang-switch {
+  margin-left: 1rem;
+  a {
+    font-size: 0.9rem;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 0.2rem 0.4rem;
+    border-radius: 6px;
+    &:hover { color: var(--accent); }
+    &.active {
+      background: rgba(148,163,184,0.15);
+      color: var(--text);
+      font-weight: 600;
+    }
+  }
+}
