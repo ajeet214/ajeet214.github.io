@@ -1,6 +1,5 @@
 <div class="lang-switch">
-  <button id="langDropdown" class="lang-btn" aria-haspopup="listbox" aria-expanded="false">
-    🌐<span id="currentLang">{{ page.lang | upcase }}</span>
+  <button id="langDropdown" class="lang-btn" aria-haspopup="listbox" aria-expanded="false">🌐<span id="currentLang">{{ page.lang | upcase }}</span>
   </button>
   <ul id="langMenu" class="lang-menu" role="listbox" hidden>
     <li><a href="{{ page.url | replace_first:'/' , '/' }}" data-lang="en" role="option">🇬🇧 English</a></li>
