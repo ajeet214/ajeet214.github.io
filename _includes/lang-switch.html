@@ -1,10 +1,30 @@
 <div class="lang-switch">
   <button id="langDropdown" class="lang-btn" aria-haspopup="listbox" aria-expanded="false">
-    🌐 <span id="currentLang">EN</span>
+    🌐 <span id="currentLang">{{ page.lang | default: "en" | upcase }}</span>
   </button>
   <ul id="langMenu" class="lang-menu" role="listbox" hidden>
-    <li><a href="/{{ current }}" data-lang="en" role="option">🇬🇧 English</a></li>
-    <li><a href="/vn/{{ current }}" data-lang="vn" role="option">🇻🇳 Tiếng Việt</a></li>
-    <li><a href="/kr/{{ current }}" data-lang="kr" role="option">🇰🇷 한국어</a></li>
+    <!-- English -->
+    <li>
+      <a href="{{ site.baseurl }}{% if page.permalink %}{{ page.permalink }}{% else %}/{{ page.active | default: '' }}/{% endif %}"
+         data-lang="en" role="option">
+        🇬🇧 English
+      </a>
+    </li>
+
+    <!-- Vietnamese -->
+    <li>
+      <a href="{{ site.baseurl }}/vn{% if page.permalink %}{{ page.permalink }}{% else %}/{{ page.active | default: '' }}/{% endif %}"
+         data-lang="vn" role="option">
+        🇻🇳 Tiếng Việt
+      </a>
+    </li>
+
+    <!-- Korean -->
+    <li>
+      <a href="{{ site.baseurl }}/kr{% if page.permalink %}{{ page.permalink }}{% else %}/{{ page.active | default: '' }}/{% endif %}"
+         data-lang="kr" role="option">
+        🇰🇷 한국어
+      </a>
+    </li>
   </ul>
 </div>
